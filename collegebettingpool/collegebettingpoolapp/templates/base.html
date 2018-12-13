@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+	<head>
+		<title>{% block title %}College Betting Pool - The Super Software Bros{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="{% static 'collegebettingpoolapp/assets/css/style.css'%}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="{% url 'index' %}"><div class="block-img"><img class="logo-img" src="{% static 'collegebettingpoolapp/images/UofM_horiz_cmyk_SSB.png'%}" alt="The Super Software Bros"></div></a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="{% url 'index' %}">Home</a></li>
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'bettingpool-sheet' %}">Betting Sheet</a></li>
+  					<li><a href="{% url 'bettingpool-history' %}">History</a></li>
+  					<li><a href="{% url 'bettingpool-scores' %}">Scores</a></li>
+  					<li><a href="{% url 'bettingpool-about' %}">About</a></li>
+  					<li><a href="{% url 'logout' %}">Logout</a></li>
+  					{% else %}
+  					<li><a href="{% url 'login' %}">Login</a></li>
+  					{% endif %}
+  					<li><a href="{% url 'password_reset' %}">Reset Password</a></li>
+				</ul>
+			</nav>
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>College Betting Pool</h1>
+					<p>Designed by The Super Software Bros<br />
+						in partial fulfillment of the <a href="https://www.memphis.edu">University of Memphis</a> Software Engineering class.</p>
+				</div>
+				<video autoplay loop muted playsinline src="{% static 'collegebettingpoolapp/images/banner.jpg'%}"></video>
+			</section>	
+			{% block content %}
+	
+			{% endblock %}
+					
+
+		<!-- CTA -->
+			<section id="cta" class="wrapper">
+				<div class="inner">
+					<h2>The Super Software Bros</h2>
+					<p>The Super Software Bros are a team of four University of Memphis seniors who came together to complete this Software Engineering group project. Each member is involved in the Electrical and Computer Engineering Department as well, through roles in both UofM RSO leadership and the IEEE Robot Team.</p>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>College Betting Pool | Software Engineering</h3>
+							<p>This team project was to create a Django-based web application that automates the college betting pool at ReTrans. The process currently in place is manual and tedious, thus the purpose of the project is to provide an internet-capable process for as much of the “system” as possible.</p>
+						</section>
+						<section>
+							<h4>The Team</h4>
+							<ul class="alt">
+								<li><a href="#">Eric Hutcheson</a></li>
+								<li><a href="#">Aaron Alexander</a></li>
+								<li><a href="#">Garrett Moody</a></li>
+								<li><a href="#">Brandon Simmers</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>See our progression</h4>
+							<ul class="plain">
+								<li><a href="https://github.com/aaronralex/college-betting-pool-app"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; The Super Software Bros 2018.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'collegebettingpoolapp/assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'collegebettingpoolapp/assets/js/browser.min.js'%}"></script>
+			<script src="{% static 'collegebettingpoolapp/assets/js/breakpoints.min.js'%}"></script>
+			<script src="{% static 'collegebettingpoolapp/assets/js/util.js'%}"></script>
+			<script src="{% static 'collegebettingpoolapp/assets/js/main.js'%}"></script>
+
+	</body>
+</html>

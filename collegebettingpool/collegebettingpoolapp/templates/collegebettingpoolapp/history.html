@@ -1,0 +1,75 @@
+{% extends 'base2.html' %}
+{% block title %}Betting History{% endblock %}
+{% block content %}
+<div id="heading" >
+	<h1>History</h1>
+</div>
+
+<section id="main" class="wrapper">
+	<div class="inner">
+		<div class="content">
+			{% if user.is_authenticated %}
+			<header class="special">
+				<h2>Past Betting Sheets</h2>
+			</header>
+            {% for week in weeks %}
+			<header class="special">
+                <h3>Week {{ week }} Bets</h3>
+            </header>
+            <table>
+                {% for row in query %}
+                {% if row.6 == week %}
+					{% if row.9 == None %}
+			  		<tr>
+			  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}" disabled><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+			  			<td>{{ row.3 }}</td>
+			  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}" disabled><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+			  			<td>{{ row.4 }}</td>
+			  			<td>{{ row.5 }}</td>
+			  		</tr>
+					{% elif row.9 == True %}
+					<tr>
+			  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}" disabled checked><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+			  			<td>{{ row.3 }}</td>
+			  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}" disabled><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+			  			<td>{{ row.4 }}</td>
+			  			<td>{{ row.5 }}</td>
+			  		</tr>
+					{% else %}
+					<tr>
+			  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}" disabled><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+			  			<td>{{ row.3 }}</td>
+			  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}" disabled checked><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+			  			<td>{{ row.4 }}</td>
+			  			<td>{{ row.5 }}</td>
+			  		</tr>
+                    {% endif %}               
+
+                {% endif %}
+                {% endfor %}
+            </table>
+            {% endfor %}
+			<!--<table style="width:50%">
+		  		<tr>
+		  			<th>Participant</th>
+		  			<th>Total Points</th>
+		  		</tr>
+				
+				{% for participant in participants %}
+
+				<tr>
+					<td> {{participant.user.username}} </td>
+					<td> {{participant.total_points}} </td>
+				</tr>
+
+				{% endfor %}
+			</table> -->
+		
+			{% else %}
+		  	<p>You are not logged in</p>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

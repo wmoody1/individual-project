@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block title %}Week {{ current_week }} Closeout{% endblock %}
+{% block content %}
+<div id="heading">
+    <h1>Week {{ current_week }} Closeout</h1>
+</div>
+<section id="main" class="wrapper">
+    <div class="inner">
+        <div class="content">
+        	<header class="special">
+        		<h2><i class="icon fa-exclamation-triangle"></i> CAUTION <i class="icon fa-exclamation-triangle"></i></h2>
+        		<p><i class="icon fa-exclamation-circle"></i> You are about to close out week {{ current_week }}. This will result in the following changes which are <strong>NOT</strong> reversible. <i class="icon fa-exclamation-circle"></i></p>
+                <p>{{ participants.count }} users about to aquire {{ running_score }} combined points.</p>
+                <p>This will advance to week {{ current_week|add:"1" }}</p>
+        	    <form method="post">
+                    {% csrf_token %}
+                    <input type="Submit" value="Close Week {{ current_week }}" class="primary" />
+                </form>
+            </header>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

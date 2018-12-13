@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Highlights -->
+<section class="wrapper">
+	<div class="inner">
+		{% if user.is_authenticated %} 
+			{% if user.is_staff %}
+			{% load admin_urls %}
+			<header class="special">
+				<h1>Admin Portal</h1>
+				<p>Welcome, {{ user.username }}! Please select where you would like to go:</p>
+			</header>
+			<div class="highlights">
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'admin:index' %}" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+							<h3>Administration</h3>
+						</header>
+						<ul class="inner alt" style="text-align: left;">
+							<li><a href="{% url 'admin:collegebettingpoolapp_game_changelist' %}">Manage Games</a></li>
+							<li><a href="{% url 'admin:auth_user_changelist' %}">Manage Users</a></li>
+							<li><a href="{% url 'password_reset' %}">Change Password</a></li>
+							{% if user.is_superuser %}
+							<li><a href="{% url 'bettingpool-closeout' %}">Close Out Week</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-history' %}" class="icon fa-files-o"><span class="label">Icon</span></a>
+							<h3>History</h3>
+						</header>
+						<p>See past betting pools and their results.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-sheet' %}" class="icon fa-floppy-o"><span class="label">Icon</span></a>
+							<h3>Submit A Sheet</h3>
+						</header>
+						<p>Fill out our own betting sheet.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-scores' %}" class="icon fa-line-chart"><span class="label">Icon</span></a>
+							<h3>Leaderboard</h3>
+						</header>
+						<p>See who is winning.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-about' %}" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
+							<h3>About</h3>
+						</header>
+						<p>Learn about the Betting Pool and this project.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="https://github.com/aaronralex/college-betting-pool-app" class="icon fa-qrcode"><span class="label">Icon</span></a>
+							<h3>GitHub</h3>
+						</header>
+						<p>Check this out on GitHub.</p>
+					</div>
+				</section>
+			</div>
+			{% else %}
+			<header class="special">
+				<h1>User Portal</h1>
+				<p>Welcome, {{ user.username }}! Please select where you would like to go:</p>
+			</header>
+			<div class="highlights">
+				<section>
+					<div class="footer inner content">
+						<header>
+							<a href="{% url 'password_reset' %}" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+							<h3>Account</h3>
+						</header>
+						<p>Reset password</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-history' %}" class="icon fa-files-o"><span class="label">Icon</span></a>
+							<h3>History</h3>
+						</header>
+						<p>See past betting pools and their results.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-sheet' %}" class="icon fa-floppy-o"><span class="label">Icon</span></a>
+							<h3>Submit A Sheet</h3>
+						</header>
+						<p>Fill out our own betting sheet.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-scores' %}" class="icon fa-line-chart"><span class="label">Icon</span></a>
+							<h3>Leaderboard</h3>
+						</header>
+						<p>See who is winning.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="{% url 'bettingpool-about' %}" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
+							<h3>About</h3>
+						</header>
+						<p>Learn about the Betting Pool and this project.</p>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<header>
+							<a href="https://github.com/aaronralex/college-betting-pool-app" class="icon fa-qrcode"><span class="label">Icon</span></a>
+							<h3>GitHub</h3>
+						</header>
+						<p>Check this out on GitHub.</p>
+					</div>
+				</section>
+			</div>
+			{% endif %}
+		{% else %}
+		<header class="special">
+			<h3>Welcome to the College Betting Pool by The Super Software Bros!</h3>
+			<p>You are not logged in, please <a href="{% url 'login' %}">login</a> to continue.</p>
+		</header>
+		
+		{% endif %}
+	</div>
+</section>
+{% endblock %}

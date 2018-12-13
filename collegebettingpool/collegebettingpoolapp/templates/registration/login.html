@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="wrapper">
+	<div class="inner">
+		<header class="special">
+			{% if user.is_authenticated %}
+
+			You are already logged in.
+
+			{% else %}
+			  <h2>Login</h2>
+			  <form method="post">
+			    {% csrf_token %}
+			    {{ form.as_p }}
+			    <button type="submit">Login</button>
+			  </form>
+			  <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+			 {% endif %}
+		</header>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: garrettmoody@yahoo.com
+Date: Thu, 08 Nov 2018 22:33:10 -0000
+Message-ID: 
+ <154171639050.12636.12940079797905567505@LAPTOP-DENF4JS2.memphis.edu>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MTA/514-5c1348513f928214e6f7/
+
+Your username, in case you've forgotten: garrett
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

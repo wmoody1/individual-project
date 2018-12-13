@@ -1,0 +1,42 @@
+{% extends 'base2.html' %}
+{% block title %}Scores{% endblock %}
+{% block content %}
+<div id="heading" >
+	<h1>Leaderboard</h1>
+</div>
+
+<section id="main" class="wrapper">
+	<div class="inner">
+		<div class="content">
+			<header class="special">
+			<h1>Current Scores</h1>
+			</header>
+			{% if user.is_authenticated %}
+
+			<table>
+		  		<tr>
+		  			<th>Rank</th>
+		  			<th>Participant</th>
+		  			<th>Total Points</th>
+		  		</tr>
+
+				{% for participant in participants %}
+
+				<tr>
+					<td> {{ forloop.counter }} </td>
+					<td> {{participant.user.username}}</td>
+					<td> {{participant.total_points}} </td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+
+			{% else %}
+		  	<p>You are not logged in</p>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

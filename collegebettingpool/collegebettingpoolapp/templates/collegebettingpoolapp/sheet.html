@@ -1,0 +1,84 @@
+{% extends 'base2.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div id="heading" >
+	<h1>College Betting Sheet</h1>
+</div>
+
+<section id="main" class="wrapper">
+	<div class="inner">
+		<div class="content">
+			{% if user.is_authenticated %}
+			<header class="special">	
+				<h2>Welcome, {{ user.username }}!</h2>
+				<p>Please place your bets below:</p>
+		  	</header>
+		  	<form target="_self" method="post">
+
+		  	{% csrf_token %}
+
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th>Favorite</th>
+			  				<th>Line</th>
+			  				<th>Underdog</th>
+			  				<th>TV</th>
+			  				<th>Date/Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for row in query %}
+						{% if row.9 == None %}
+				  		<tr>
+				  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}"><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+				  			<td>{{ row.3 }}</td>
+				  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}"><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+				  			<td>{{ row.4 }}</td>
+				  			<td>{{ row.5 }}</td>
+				  		</tr>
+						{% elif row.9 == True %}
+						<tr>
+				  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}" checked><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+				  			<td>{{ row.3 }}</td>
+				  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}"><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+				  			<td>{{ row.4 }}</td>
+				  			<td>{{ row.5 }}</td>
+				  		</tr>
+						{% else %}
+						<tr>
+				  			<td><input type="radio" id="g{{ row.0 }}" name="g{{ row.0 }}" value="{{row.1}}"><label for="g{{ row.0 }}">{{ row.1 }}</label></td>
+				  			<td>{{ row.3 }}</td>
+				  			<td><input type="radio" id="g{{ row.0 }}+" name="g{{ row.0 }}" value="{{row.2}}" checked><label for="g{{ row.0 }}+">{{ row.2 }}</label></td>
+				  			<td>{{ row.4 }}</td>
+				  			<td>{{ row.5 }}</td>
+				  		</tr>
+                        {% endif %}
+				  		{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<header class="special">
+				<h3>Game of the Week: </h3>
+			    <p style="font-weight:bold">{% for game in game_of_the_week %}
+				   {{ game.favorite }} vs. {{ game.underdog }}
+				   {% endfor %}
+				</p>
+				<p> [Enter Your Bet for the Total Points Scored in the Game of the Week:] <input type="text" name="game_of_the_week_points"></p>
+			  	<input type="hidden" name="userID" value="{{ user.id }}">
+				<input type="Submit" name="save_sheet" value="Save" />
+		  		<input type="Submit" name="submit_sheet" value="Submit Betting Sheet" class="primary"/>
+		  	</header>
+		  </form>
+	  
+  <!--<button type="submit">Logout</button>-->
+		{% else %}
+		<header class="special">
+  			<h3>You are not logged in</h3>
+  		</header>
+		{% endif %}
+		</div>
+	</div>
+</section>
+{% endblock %}
